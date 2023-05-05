@@ -3,6 +3,12 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
 
 /**
+ * Textures
+ */
+const textureLoader = new THREE.TextureLoader();
+const doorColorTexture = textureLoader.load('/textures/door/color.jpg');
+
+/**
  * Base
  */
 // Debug
@@ -13,11 +19,6 @@ const canvas = document.querySelector('canvas.webgl')
 
 // Scene
 const scene = new THREE.Scene()
-
-/**
- * Textures
- */
-const textureLoader = new THREE.TextureLoader()
 
 /**
  * House
@@ -42,6 +43,17 @@ const roof = new THREE.Mesh(
 roof.rotation.y = Math.PI * 0.25;
 roof.position.y = 2.5 + 0.5;
 house.add(roof);
+
+// Door
+const door = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.04, 0.83),
+    new THREE.MeshStandardMaterial({map: doorColorTexture})
+)
+door.rotation.z = Math.PI / 2;
+// door.position.y = door.geometry.parameters.height / 2;
+door.position.y = 2.04 / 2;
+door.position.z = 2 + 0.01;
+house.add(door);
 
 // Floor
 const floor = new THREE.Mesh(
