@@ -20,6 +20,10 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+// Fog
+const fog = new THREE.Fog(0x262837, 1, 20);
+scene.fog = fog;
+
 /**
  * House
  */
@@ -105,7 +109,7 @@ for(let i=0; i<30; i++) {
 
 // Floor
 const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(20, 20),
+    new THREE.PlaneGeometry(30, 30),
     new THREE.MeshStandardMaterial({ color: '#a9c388' })
 )
 floor.rotation.x = - Math.PI * 0.5
@@ -180,6 +184,7 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer.setClearColor(0x262837);
 
 /**
  * Animate
