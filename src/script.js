@@ -89,7 +89,7 @@ for(let i=0; i<30; i++) {
 
     // Randomize positions
     const angle = Math.random() * Math.PI * 2; // Angle
-    const radius = 3 + Math.random() * 6 // house's size (minimum) + random position until the end of the plane
+    const radius = 3 + Math.random() * 6 // house's size (min) + random position until the end of the plane (max)
     const x = Math.cos(angle) * radius; // x axis
     const z = Math.sin(angle) * radius; // z axis
     grave.position.set(x, 0.3, z);
