@@ -50,10 +50,31 @@ const door = new THREE.Mesh(
     new THREE.MeshStandardMaterial({map: doorColorTexture})
 )
 door.rotation.z = Math.PI / 2;
-// door.position.y = door.geometry.parameters.height / 2;
 door.position.y = 2.04 / 2;
 door.position.z = 2 + 0.01;
 house.add(door);
+
+// Bushes
+const bushGeometry = new THREE.SphereGeometry(1, 16, 16);
+const bushMaterial = new THREE.MeshStandardMaterial({color: '#89c854'});
+
+const bush1 = new THREE.Mesh(bushGeometry, bushMaterial);
+bush1.scale.set(0.5, 0.5, 0.5);
+bush1.position.set(1, 0.3, 2.5)
+
+const bush2 = new THREE.Mesh(bushGeometry, bushMaterial);
+bush2.scale.set(0.2, 0.2, 0.2);
+bush2.position.set(1.7, 0.15, 2.2)
+
+const bush3 = new THREE.Mesh(bushGeometry, bushMaterial);
+bush3.scale.set(0.4, 0.4, 0.4);
+bush3.position.set(-1, 0.2, 2.4)
+
+const bush4 = new THREE.Mesh(bushGeometry, bushMaterial);
+bush4.scale.set(0.15, 0.15, 0.15);
+bush4.position.set(-1.45, 0.1, 2.6)
+
+house.add(bush1, bush2, bush3, bush4)
 
 // Floor
 const floor = new THREE.Mesh(
