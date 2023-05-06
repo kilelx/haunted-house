@@ -7,6 +7,12 @@ import * as dat from 'lil-gui'
  */
 const textureLoader = new THREE.TextureLoader();
 const doorColorTexture = textureLoader.load('/textures/door/color.jpg');
+const doorAlphaTexture = textureLoader.load('/textures/door/alpha.jpg');
+const doorAmbientOcclusionTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg');
+const doorHeightTexture = textureLoader.load('/textures/door/height.jpg');
+const doorMetalnessTexture = textureLoader.load('/textures/door/metalness.jpg');
+const doorNormalTexture = textureLoader.load('/textures/door/normal.jpg');
+const doorRoughnessTexture = textureLoader.load('/textures/door/roughness.jpg');
 
 /**
  * Base
@@ -50,10 +56,28 @@ house.add(roof);
 
 // Door
 const door = new THREE.Mesh(
-    new THREE.PlaneGeometry(2.04, 0.83),
-    new THREE.MeshStandardMaterial({map: doorColorTexture})
+    new THREE.PlaneGeometry(2.2, 2.2, 50, 50),
+    new THREE.MeshStandardMaterial({
+        map: doorColorTexture,
+        transparent: true,
+        alphaMap: doorAlphaTexture,
+        aoMap: doorAmbientOcclusionTexture,
+        displacementMap: doorHeightTexture,
+        displacementScale: 0.1,
+        normalMap: doorNormalTexture,
+        metalnessMap: doorMetalnessTexture,
+        roughnessMap: doorRoughnessTexture
+        // wireframe: true
+    })
 )
-door.rotation.z = Math.PI / 2;
+
+console.log(door.geometry);
+
+// We need to provide uv2 coordinates for the ambient occlusion map
+door.geometry.setAttribute(
+    'uv2',
+    new THREE.Float32BufferAttribute(door.geometry.attributes.uv.array, 2))
+
 door.position.y = 2.04 / 2;
 door.position.z = 2 + 0.01;
 house.add(door);
@@ -175,6 +199,10 @@ scene.add(camera)
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
+
+// controls.maxAzimuthAngle = Math.PI;
+// controls.minAzimuthAngle = -Math.PI;
+controls.maxPolarAngle = (Math.PI / 2) - 0.1;
 
 /**
  * Renderer
