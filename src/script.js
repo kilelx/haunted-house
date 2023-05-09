@@ -286,10 +286,10 @@ const tick = () =>
         Math.sin(elapsedTime * 3)
     );
 
-    const ghost2Angle = - elapsedTime * 0.32;
+    const ghost2Angle = elapsedTime * 0.5;
     ghost2.position.set(
-        Math.cos(ghost2Angle) * 5,
-        Math.sin(ghost2Angle) * 5,
+        Math.cos(ghost2Angle) * 0.32,
+        Math.sin(ghost2Angle) * 4,
         Math.sin(elapsedTime * 4) + Math.sin(elapsedTime * 2.5)
     );
 
