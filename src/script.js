@@ -144,7 +144,7 @@ const graves = new THREE.Group();
 scene.add(graves);
 
 const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
-const graveMaterial = new THREE.MeshStandardMaterial({color: "#b2b6b1"});
+const graveMaterial = new THREE.MeshStandardMaterial({color: '#b2b6b1'});
 
 for(let i=0; i<30; i++) {
     // Create graves
