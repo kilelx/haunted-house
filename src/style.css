@@ -17,3 +17,18 @@ body
     left: 0;
     outline: none;
 }
+
+
+.nav-cta-container {
+    content: '';
+    display: block;
+    border-radius: inherit;
+    box-shadow: 0 0 15px COLOR;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(135deg, #FC0011, #6953FE, #FC0011);
+}
